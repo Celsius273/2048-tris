@@ -12,5 +12,5 @@ h1 { display:block; width:540px; margin:20px auto; padding-bottom:20px; font:nor
 
 #Infowin {width:200px; float:right}
 
-#Canvas2  {background:#999999; border:2px solid #222222; padding-bottom:20px;}
-#Canvas3  {background:#999999; border:2px solid #222222;}
+#Score  {background:#999999; border:2px solid #222222; padding-bottom:20px;}
+#Next  {background:#999999; border:2px solid #222222;}
