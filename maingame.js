@@ -11,8 +11,12 @@ var loose = false;
 var won = false;
 var scram=5;
 
-var pieze = new Piece([[128,256,512,0,1],[0,0,1024,0,1],[1,2,4,8,16],[64,0,32,0,0],[1,0,1,1,2]], 1, 1);
-var nextz = new Piece([[8,1,2,0,1],[0,0,2,0,1],[1,1,1,1,1],[1,0,2,0,0],[128,0,1,1,2]], 1, 1);
+//var pieze = new Piece([[128,256,512,0,1],[0,0,1024,0,1],[1,2,4,8,16],[64,0,32,0,0],[1,0,1,1,2]], 1, 1);
+//var nextz = new Piece([[8,1,2,0,1],[0,0,2,0,1],[1,1,1,1,1],[1,0,2,0,0],[128,0,1,1,2]], 1, 1);
+
+var pieze = new Piece([[0,2,4],[0,2,0],[0,4,0]],0,2);
+var nextz = new Piece([[1,2,4],[0,2,0],[0,0,0]],0,3);
+
 var animate = false;
 var mode = true;
 var dx = -32;
@@ -131,10 +135,12 @@ function toGrid(px){
 }
 
 function hol(){
+	var mod = false;
 	for (var i=0;i<dimX;i++){
 		var prv = 0;
 		for (var j=0;j<dimY;j++){
 			if(grid[i][j] !=0 && grid[i][j] == prv){
+				mod = true;
 				grid[i][j-1] = 2 * prv;
 				if(prv == 1024){
 					won = true;
@@ -153,13 +159,16 @@ function hol(){
 			else{prv=grid[i][j];}
 		}
 	}
+	return mod;
 }
 
 function hor(){
+	var lol = false;
 	for (var i=0;i<dimX;i++){
 		var prv = 0;
 		for (var j=dimY-1;j>=0;j--){
 			if(grid[i][j] !=0 && grid[i][j] == prv){
+				mod = true;
 				grid[i][j+1] = 2 * prv;
 				if(prv == 1024){
 					won = true;
@@ -178,13 +187,16 @@ function hor(){
 			else{prv=grid[i][j];}
 		}
 	}
+	return mod;
 }
 
 function hou(){
+	var mod = false;
 	for (var i=0;i<dimY;i++){
 		var prv = 0;
 		for (var j=0;j<dimX;j++){
 			if(grid[j][i] !=0 && grid[j][i] == prv){
+				mod = true;
 				grid[j-1][i] = 2 * prv;
 				if(prv == 1024){
 					won = true;
@@ -203,13 +215,16 @@ function hou(){
 			else{prv=grid[j][i];}
 		}
 	}
+	return mod;
 }
 
 function hod(){
+	var mod = false;
 	for (var i=0;i<dimY;i++){
 		var prv = 0;
 		for (var j=dimX-1;j>=0;j--){
 			if(grid[j][i] !=0 && grid[j][i] == prv){
+				mod = true;
 				grid[j+1][i] = 2 * prv;
 				if(prv == 1024){
 					won = true;
@@ -228,6 +243,7 @@ function hod(){
 			else{prv=grid[j][i];}
 		}
 	}
+	return mod;
 }
 
 function scramble(){
@@ -464,8 +480,8 @@ $(document).keyup(function(e){
 		mode=true;
 		score=0;
 		scram=5;
-		pieze = new Piece([[128,256,512,0,1],[0,0,1024,0,1],[1,2,4,8,16],[64,0,32,0,0],[1,0,1,1,2]], 1, 1);
-		nextz = new Piece([[8,1,2,0,1],[0,0,2,0,1],[1,1,1,1,1],[1,0,2,0,0],[128,0,1,1,2]], 1, 1);
+		pieze = new Piece([[128,256,512,4,1],[16,0,1024,64,1],[1,2,4,8,16],[64,0,32,0,16],[1,1,1,1,2]], 1, 1);
+		nextz = new Piece([[8,1,2,4,1],[4,0,2,0,1],[1,1,1,1,1],[1,4,2,1,0],[128,0,1,1,2]], 1, 1);
 		for (var i=0;i<dimX;i++){
 		grid[i] = new Array(dimY);
 			for (var j=0;j<dimX;j++){
@@ -481,8 +497,8 @@ $(document).keyup(function(e){
 				cnt=spda;
 			}
 			else{
-				hou();
-				cnt=spdb;
+				if(hou())
+					cnt=spdb;
 			}
 			break;
 		case 65:
@@ -491,8 +507,8 @@ $(document).keyup(function(e){
 				cnt=spda;
 			}
 			else{
-				hol();
-				cnt=spdb;
+				if(hol())
+					cnt=spdb;
 			}
 			break;
 		case 68:
@@ -501,8 +517,8 @@ $(document).keyup(function(e){
 				cnt=spda;
 			}
 			else{
-				hor();
-				cnt=spdb;
+				if(hor())
+					cnt=spdb;
 			}
 			break;
 		case 16:
@@ -515,8 +531,8 @@ $(document).keyup(function(e){
 				dw();
 			}
 			else{
-				hod();
-				cnt=spdb;
+				if(hod())
+					cnt=spdb;
 			}
 			break;
 		default:
