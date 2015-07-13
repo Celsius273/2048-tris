@@ -27,16 +27,22 @@ Clearing lines will incur a 2000 point PENALTY, because when you clear lines, it
 
 In 2048 mode:
 Quick! You have just a nick of time to combine adjacent equal powers of 2 into a larger power! Use this time wisely to score points and give yourself more space to work with!
-While 2048 mode is active, a golden rectangle will appear
+While 2048 mode is active, a golden rectangle will appear, you can delay the end of 2048-tris by making valid moves, otherwise it goes away in around 1-2 seconds
 
 Controls:
 W/A/S/D: Combine adjacent identical powers of 2 in the specified directionf
 R: Restart
+
+Known bugs:
+-Sometimes rotation will place a block well outside where it's supposed to be. Has to do with the placement algorithm being too aggressive in determining a block space
 
 Note: Inexperienced players will end up with a lot of floating blocks as they continue playing, PICK YOUR DIRECTIONS CAREFULLY DURING THIS MODE
 
 Version history:
 1.0 - March 29
 -Initial release
+
+1.0000001 - Jul 13
+-Edited readme
 
 Further note: Everytime you restart, a huge block with huge numbers will appear, THIS IS INTENTIONAL FOR DEMONSTRATION PURPOSES
