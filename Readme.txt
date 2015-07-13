@@ -18,7 +18,7 @@ Stack the blocks together, you enter 2048 mode once an active falling block has 
 Controls:
 A/D: Move left/right
 S: Increase falling velocity
-W: Rotate Counterclockwise
+W: Rotate Counterclockwise, can cause weird block placements occasionally
 Shift: Randomize all numbers in the active falling block (limited to 5 per game)
 R: Restart
 
