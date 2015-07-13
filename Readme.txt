@@ -2,7 +2,7 @@
 
 Programmed in HTML5, CSS3 and Javascript. Implements JQuery
 
-Winner of the "Most Functional Hack" award at HackWaterloo
+Winner of the "Most Functional Hack" award at HackWaterloo 2014
 
 How to play:
 Download the zip file from Github, unzip and run index.html in your favourite web browser
